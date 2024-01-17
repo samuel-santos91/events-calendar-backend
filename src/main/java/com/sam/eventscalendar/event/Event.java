@@ -30,14 +30,14 @@ public class Event {
   private String time;
 
   @Column
-  private Date createdAt;
+  private Date date;
 
   public Event() {}
 
-  public Event(String title, String description, String time, Date createdAt) {
+  public Event(String title, String description, String time, Date date) {
     this.title = title;
     this.description = description;
     this.time = time;
-    this.createdAt = createdAt;
+    this.date = date;
   }
 }
