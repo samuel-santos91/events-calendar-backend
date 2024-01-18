@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,9 @@ public class EventController {
 
   @GetMapping("/byDate/{date}")
   public ResponseEntity<List<Event>> getEventsByDate(
-    @PathVariable("date") Date date
+    @PathVariable("date") @DateTimeFormat(
+      iso = DateTimeFormat.ISO.DATE
+    ) Date date
   ) {
     List<Event> events = eventService.getEventsByDate(date);
 
