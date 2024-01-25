@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,11 +30,11 @@ public class Event {
   private String time;
 
   @Column
-  private Date date;
+  private LocalDate date;
 
   public Event() {}
 
-  public Event(String title, String description, String time, Date date) {
+  public Event(String title, String description, String time, LocalDate date) {
     this.title = title;
     this.description = description;
     this.time = time;

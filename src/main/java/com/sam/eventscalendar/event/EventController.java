@@ -1,7 +1,8 @@
 package com.sam.eventscalendar.event;
 
 import jakarta.validation.Valid;
-import java.util.Date;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,25 @@ public class EventController {
   @Autowired
   private EventService eventService;
 
+  @GetMapping("/byMonthAndYear/{year}/{month}")
+  public ResponseEntity<List<Event>> getEventsByMonthAndYear(
+    @PathVariable int year,
+    @PathVariable int month
+  ) {
+    List<Event> events = eventService.getEventsByMonthAndYear(month, year);
+
+    if (!events.isEmpty()) {
+      return ResponseEntity.ok(events);
+    } else {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+  }
+
   @GetMapping("/byDate/{date}")
   public ResponseEntity<List<Event>> getEventsByDate(
     @PathVariable("date") @DateTimeFormat(
       iso = DateTimeFormat.ISO.DATE
-    ) Date date
+    ) LocalDate date
   ) {
     List<Event> events = eventService.getEventsByDate(date);
 

@@ -3,7 +3,7 @@ package com.sam.eventscalendar.event;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +21,7 @@ public class EventCreateDTO {
   private String time;
 
   @NotNull
-  private Date date;
+  private LocalDate date;
 
   public EventCreateDTO() {}
 
@@ -29,7 +29,7 @@ public class EventCreateDTO {
     String title,
     String description,
     String time,
-    Date date
+    LocalDate date
   ) {
     this.title = title;
     this.description = description;

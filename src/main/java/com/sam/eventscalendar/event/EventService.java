@@ -1,7 +1,7 @@
 package com.sam.eventscalendar.event;
 
 import jakarta.transaction.Transactional;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,14 @@ public class EventService {
   @Autowired
   private EventRepository eventRepository;
 
-  public List<Event> getEventsByDate(Date date) {
+  public List<Event> getEventsByMonthAndYear(int month, int year) {
+    LocalDate startDate = LocalDate.of(year, month, 1);
+    LocalDate endDate = LocalDate.of(year, month + 1, 1).minusDays(1);
+
+    return eventRepository.findByDateBetween(startDate, endDate);
+  }
+
+  public List<Event> getEventsByDate(LocalDate date) {
     return eventRepository.findByDate(date);
   }
 
