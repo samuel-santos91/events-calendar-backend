@@ -15,8 +15,10 @@ public class EventService {
   private EventRepository eventRepository;
 
   public List<Event> getEventsByMonthAndYear(int month, int year) {
-    LocalDate startDate = LocalDate.of(year, month, 1);
-    LocalDate endDate = LocalDate.of(year, month + 1, 1).minusDays(1);
+    LocalDate startDate = LocalDate.of(year, month + 1, 1);
+    LocalDate endDate = LocalDate
+      .of(year, (month + 1) % 12 + 1, 1)
+      .minusDays(1);
 
     return eventRepository.findByDateBetween(startDate, endDate);
   }
