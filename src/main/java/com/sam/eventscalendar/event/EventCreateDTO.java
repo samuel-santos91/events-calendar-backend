@@ -14,7 +14,7 @@ public class EventCreateDTO {
   @NotBlank
   private String title;
 
-  @Size(max = 50, message = "Description should not exceed 50 characters")
+  @Size(max = 100, message = "Description should not exceed 50 characters")
   private String description;
 
   @NotBlank
